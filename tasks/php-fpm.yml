@@ -1,0 +1,119 @@
+---
+- name: Install dependencies
+  apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
+  with_items:
+    - make
+    - gcc
+    - g++
+    - libicu-dev
+    - libssl-dev
+    - libxml2-dev
+    - libcurl4-openssl-dev
+    - libjpeg-dev
+    - libvpx-dev
+    - libpng12-dev
+    - libfreetype6-dev
+    - libc-client2007e-dev
+    - libkrb5-dev
+    - libmcrypt-dev
+    - libxslt1-dev
+    - libbz2-dev
+    - automake
+    - autoconf
+    - pkg-config
+  become: yes
+
+- name: Download source code
+  get_url: url=http://phpmirror.oam.rocks/php-{{ php_version }}.tar.gz dest=/tmp/php-{{ php_version }}.tar.gz
+
+- name: Extract archive
+  command: chdir=/tmp/ tar xfz php-{{ php_version }}.tar.gz creates=/tmp/php-{{ php_version }}
+
+- name: Make clean
+  command: chdir=/tmp/php-{{ php_version }} make clean
+  ignore_errors: yes
+
+- name: Configure
+  command: >
+    ./configure
+    --prefix=/usr
+    --sysconfdir=/etc
+    --localstatedir=/var
+    --disable-cli
+    --disable-cgi
+    --without-pear
+    --enable-fpm
+    --with-config-file-path=/etc/php5/fpm
+    --with-config-file-scan-dir=/etc/php5/fpm/conf.d
+    --with-libxml-dir
+    --with-openssl
+    --with-pcre-regex
+    --with-zlib
+    --with-bz2
+    --enable-calendar
+    --with-curl
+    --enable-exif
+    --enable-ftp
+    --with-gd
+    --with-vpx-dir
+    --with-jpeg-dir
+    --with-png-dir
+    --with-freetype-dir
+    --enable-gd-native-ttf
+    --with-gettext
+    --with-imap
+    --with-imap-ssl
+    --with-kerberos
+    --enable-bcmath
+    --enable-mbstring
+    --with-mcrypt
+    --with-mysqli
+    --with-pdo-mysql
+    --enable-shmop
+    --enable-soap
+    --enable-sockets
+    --with-xmlrpc
+    --with-xsl
+    --enable-zip
+    --enable-intl
+    --enable-opcache
+    --with-iconv-dir
+    chdir=/tmp/php-{{ php_version }}
+
+- name: Make
+  command: chdir=/tmp/php-{{ php_version }} make
+
+- name: Install
+  command: chdir=/tmp/php-{{ php_version }} make install
+  become: yes
+
+- name: Create folders
+  file: state=directory mode=0755 recurse=yes path={{ item }}
+  with_items:
+  - /etc/php5/fpm/conf.d
+  - /var/www
+  - /var/log/php-fpm
+  become: yes
+
+- name: Create php.ini
+  copy: force=no src=php.ini dest=/etc/php5/fpm/php.ini
+  become: yes
+
+- name: Install startup script
+  command: chdir=/tmp/php-{{ php_version }} {{ item }}
+  with_items:
+  - cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
+  - chmod +x /etc/init.d/php-fpm
+  become: yes
+
+- name: Enable startup script
+  service: name=php-fpm enabled=yes
+  become: yes
+
+- name: Add logrotate config
+  copy: src=logrotate dest=/etc/logrotate.d/php-fpm
+  become: yes
+
+- name: Add fpm config
+  copy: force=no src=php-fpm.conf dest=/etc/php-fpm.conf
+  become: yes

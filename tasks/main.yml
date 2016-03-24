@@ -1,0 +1,9 @@
+---
+- name: Get php-fpm version
+  command: php-fpm --version
+  register: php_current
+  ignore_errors: yes
+
+- name: Install php-fpm
+  include: php-fpm.yml
+  when: php_current.rc != 0 or php_current.stdout.find('PHP {{ php_version }} (fpm-fcgi)') == -1
