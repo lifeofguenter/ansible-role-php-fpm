@@ -1,6 +1,6 @@
 ---
 - name: Get php-fpm version
-  command: php-fpm --version
+  command: /usr/sbin/php-fpm --version
   register: php_current
   ignore_errors: yes
 
