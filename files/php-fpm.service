@@ -7,6 +7,7 @@ Type=notify
 PIDFile=/run/php-fpm.pid
 ExecStart=/usr/sbin/php-fpm --nodaemonize --fpm-config /etc/php-fpm.conf
 ExecReload=/bin/kill -USR2 $MAINPID
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
