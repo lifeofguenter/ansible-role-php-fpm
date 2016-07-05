@@ -7,15 +7,10 @@ galaxy_info:
   platforms:
   - name: Ubuntu
     versions:
-    - trusty
-    - utopic
-    - vivid
-    - wily
     - xenial
   - name: Debian
     versions:
     - jessie
-    - wheezy
   galaxy_tags:
   - system
   - development
