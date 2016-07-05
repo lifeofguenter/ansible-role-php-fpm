@@ -25,7 +25,7 @@
   become: yes
 
 - name: Fetch .deb
-  get_url: url=ftp://ftp.weheartwebsites.de/debian/jessie/php5-fpm_{{ php_version }}_amd64.deb dest=/tmp/php5-fpm_{{ php_version }}_amd64.deb
+  get_url: url=https://ftp.weheartwebsites.de/debian/jessie/php5-fpm_{{ php_version }}_amd64.deb dest=/tmp/php5-fpm_{{ php_version }}_amd64.deb
 
 - name: Install .deb
   apt: deb=/tmp/php5-fpm_{{ php_version }}_amd64.deb
