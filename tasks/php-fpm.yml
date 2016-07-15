@@ -63,6 +63,6 @@
   command: systemctl enable php-fpm
   become: yes
 
-- name: start php-fpm
-  command: systemctl start php-fpm
-  become: yes
+#- name: start php-fpm
+#  command: systemctl start php-fpm
+#  become: yes
