@@ -66,3 +66,7 @@
 #- name: start php-fpm
 #  command: systemctl start php-fpm
 #  become: yes
+
+- name: Apt hold
+  shell: echo "php5-fpm hold" | dpkg --set-selections
+  become: yes
