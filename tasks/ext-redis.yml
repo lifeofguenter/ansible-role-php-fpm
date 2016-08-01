@@ -6,3 +6,7 @@
 - name: Install redis .deb
   apt: deb=/tmp/php5-redis_{{ php5fpm_ext_redis_version }}_amd64.deb
   become: yes
+
+- name: Apt hold
+  shell: echo "php5-redis hold" | dpkg --set-selections
+  become: yes

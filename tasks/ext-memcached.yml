@@ -16,3 +16,7 @@
 - name: Install memcached .deb
   apt: deb=/tmp/php5-memcached_{{ php5fpm_ext_memcached_version }}_amd64.deb
   become: yes
+
+- name: Apt hold
+  shell: echo "php5-memcached hold" | dpkg --set-selections
+  become: yes

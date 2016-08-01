@@ -6,3 +6,7 @@
 - name: Install apcu .deb
   apt: deb=/tmp/php5-apcu_{{ php5fpm_ext_apcu_version }}_amd64.deb
   become: yes
+
+- name: Apt hold
+  shell: echo "php5-apcu hold" | dpkg --set-selections
+  become: yes
