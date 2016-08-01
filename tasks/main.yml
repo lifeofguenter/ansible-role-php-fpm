@@ -6,8 +6,8 @@
 
 - set_fact: php5fpm_real_version="{{ php5fpm_version | regex_replace('-\\d+$', '') }}"
 
-- name: Install php-cli
-  include: php-cli.yml
+- name: Install php-fpm
+  include: php-fpm.yml
   when: php5fpm_current.rc != 0 or php5fpm_current.stdout.find("PHP {{ php5fpm_real_version }} (fpm-fcgi)") == -1
 
 - include: ext-apcu.yml
