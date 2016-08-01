@@ -1,18 +1,21 @@
 ---
 - name: Get php-fpm version
   command: /usr/sbin/php-fpm --version
-  register: php_current
+  register: php5fpm_current
   ignore_errors: yes
 
-- name: Install php-fpm
-  include: php-fpm.yml
-  when: php_current.rc != 0 or php_current.stdout.find('PHP {{ php_version }} (fpm-fcgi)') == -1
+- set_fact: php5fpm_real_version="{{ php5fpm_version | regex_replace('-\\d+$', '') }}"
 
-- name: Check if munin-node is installed
-  command: dpkg -L munin-node
-  register: dpkg_munin_node_check
-  ignore_errors: yes
+- name: Install php-cli
+  include: php-cli.yml
+  when: php5fpm_current.rc != 0 or php5fpm_current.stdout.find("PHP {{ php5fpm_real_version }} (fpm-fcgi)") == -1
 
-- name: Configure munin plugin
-  include: munin-plugin.yml
-  when: dpkg_munin_node_check.rc == 0
+- include: ext-apcu.yml
+
+- include: ext-imagick.yml
+
+- include: ext-igbinary.yml
+
+- include: ext-memcached.yml
+
+- include: ext-redis.yml

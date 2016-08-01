@@ -1,4 +1,4 @@
-/var/log/php-fpm/*.log /var/www/*/logs/phperror.log /var/www/*/logs/slow.log {
+/var/log/php5-fpm/*.log /var/www/*/logs/phperror.log /var/www/*/logs/slow.log {
   rotate 7
   daily
   missingok
@@ -8,6 +8,6 @@
   nocreate
   sharedscripts
   postrotate
-    [ ! -f /var/run/php5-fpm.pid ] || kill -USR1 `cat /var/run/php5-fpm.pid`
+    [ ! -f /run/php5-fpm.pid ] || kill -USR1 `cat /run/php5-fpm.pid`
   endscript
 }

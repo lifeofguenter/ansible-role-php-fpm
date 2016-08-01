@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - ansible-role-php-fpm
+    - ansible-role-php5-fpm

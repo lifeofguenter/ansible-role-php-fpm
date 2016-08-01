@@ -1,13 +1,13 @@
 galaxy_info:
   author: Gunter Grodotzki
-  description: A simple role that compiles PHP5-FPM from source
+  description: Install PHP5 (fpm)
   company: weheartwebsites UG
   license: MIT
   min_ansible_version: 2.0
   platforms:
   - name: Ubuntu
     versions:
-    - xenial
+    - trusty
   - name: Debian
     versions:
     - jessie
@@ -16,5 +16,4 @@ galaxy_info:
   - development
   - php
   - src
-
 dependencies: []

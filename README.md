@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lifeofguenter/ansible-role-php-fpm.svg?branch=master)](https://travis-ci.org/lifeofguenter/ansible-role-php-fpm)
+[![Build Status](https://travis-ci.org/lifeofguenter/ansible-role-php5-fpm.svg?branch=master)](https://travis-ci.org/lifeofguenter/ansible-role-php5-fpm)
 
 Role Name
 =========
@@ -27,7 +27,7 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: lifeofguenter.php-fpm }
+         - { role: lifeofguenter.php5-fpm }
 
 License
 -------

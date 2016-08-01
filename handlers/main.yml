@@ -3,3 +3,7 @@
 - name: restart_munin_node
   action: service name=munin-node state=restarted
   become: yes
+
+- name: restart_php5_fpm
+  service: name=php5-fpm enabled=yes state=reloaded
+  become: yes

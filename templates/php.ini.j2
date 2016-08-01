@@ -1,6 +1,6 @@
 [PHP]
 ; default open-basedir
-open_basedir = "/var/www/:/tmp/:/usr/lib/php/"
+open_basedir = "{{ php7fpm_conf_open_basedir }}:/tmp/:/usr/lib/php/"
 
 disable_functions = exec, show_source, system, shell_exec, passthru, popen, proc_open, proc_nice, symlink, dl
 
@@ -71,10 +71,11 @@ opcache.enable_cli=1
 opcache.use_cwd=1
 
 ; EXTENSION SECTION
-extension=igbinary.so
 extension=apcu.so
-extension=memcached.so
 extension=imagick.so
+extension=igbinary.so
+extension=memcached.so
+extension=redis.so
 
 apc.serializer=igbinary
 apc.shm_size=512M
