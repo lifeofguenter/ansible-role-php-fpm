@@ -6,9 +6,9 @@ php5fpm_conf_open_basedir: /var/www/
 
 php5fpm_conf_memory_limit: 256M
 
-php5fpm_conf_opcache.memory_consumption: 256
+php5fpm_conf_opcache_memory_consumption: 256
 
-php5fpm_conf_apc.shm_size: 256M
+php5fpm_conf_apc_shm_size: 256M
 
 php5fpm_version: 5.6.24-23
 
