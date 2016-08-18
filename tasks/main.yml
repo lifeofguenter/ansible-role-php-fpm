@@ -10,6 +10,8 @@
   include: php-fpm.yml
   when: php5fpm_current.rc != 0 or php5fpm_current.stdout.find("PHP {{ php5fpm_real_version }} (fpm-fcgi)") == -1
 
+- include: config.yml
+
 - include: ext-apcu.yml
 
 - include: ext-imagick.yml
