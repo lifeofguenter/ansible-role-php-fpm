@@ -10,14 +10,14 @@ php5fpm_conf_opcache_memory_consumption: 256
 
 php5fpm_conf_apc_shm_size: 256M
 
-php5fpm_version: 5.6.25-24
+php5fpm_version: 5.6.26-25
 
-php5fpm_ext_apcu_version: 4.0.11-24
+php5fpm_ext_apcu_version: 4.0.11-25
 
-php5fpm_ext_imagick_version: 3.4.3RC1-24
+php5fpm_ext_imagick_version: 3.4.3RC1-25
 
-php5fpm_ext_igbinary_version: 1.2.1-24
+php5fpm_ext_igbinary_version: 1.2.1-25
 
-php5fpm_ext_memcached_version: 2.2.0-24
+php5fpm_ext_memcached_version: 2.2.0-25
 
-php5fpm_ext_redis_version: 2.2.8-24
+php5fpm_ext_redis_version: 2.2.8-25
