@@ -3,7 +3,7 @@
 Role Name
 =========
 
-This role will compile PHP5-FPM from source.
+This role will compile PHP5-FPM from source. _DEPRECATED_
 
 Requirements
 ------------
@@ -38,3 +38,6 @@ Author Information
 ------------------
 
 -
+
+
+allow insecure (disable disabled_functions)_)
