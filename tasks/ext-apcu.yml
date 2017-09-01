@@ -1,7 +1,7 @@
 ---
 
 - name: Fetch apcu .deb
-  get_url: url=https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}/php5-apcu_{{ php5fpm_ext_apcu_version }}_amd64.deb dest=/tmp/php5-apcu_{{ php5fpm_ext_apcu_version }}_amd64.deb
+  get_url: url=https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}/php5-apcu_{{ php5fpm_ext_apcu_version }}_amd64.deb dest=/tmp/php5-apcu_{{ php5fpm_ext_apcu_version }}_amd64.deb validate_certs=false
 
 - name: Install apcu .deb
   apt: deb=/tmp/php5-apcu_{{ php5fpm_ext_apcu_version }}_amd64.deb

@@ -15,7 +15,7 @@
   become: yes
 
 - name: Fetch memcached .deb
-  get_url: url=https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}/php5-memcached_{{ php5fpm_ext_memcached_version }}_amd64.deb dest=/tmp/php5-memcached_{{ php5fpm_ext_memcached_version }}_amd64.deb
+  get_url: url=https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}/php5-memcached_{{ php5fpm_ext_memcached_version }}_amd64.deb dest=/tmp/php5-memcached_{{ php5fpm_ext_memcached_version }}_amd64.deb validate_certs=false
 
 - name: Install memcached .deb
   apt: deb=/tmp/php5-memcached_{{ php5fpm_ext_memcached_version }}_amd64.deb
