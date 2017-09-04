@@ -1,7 +1,7 @@
 ---
 
 - name: Fetch redis .deb
-  get_url: url=https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}/php5-redis_{{ php5fpm_ext_redis_version }}_amd64.deb dest=/tmp/php5-redis_{{ php5fpm_ext_redis_version }}_amd64.deb
+  get_url: url=https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}/php5-redis_{{ php5fpm_ext_redis_version }}_amd64.deb dest=/tmp/php5-redis_{{ php5fpm_ext_redis_version }}_amd64.deb validate_certs=false
 
 - name: Install redis .deb
   apt: deb=/tmp/php5-redis_{{ php5fpm_ext_redis_version }}_amd64.deb

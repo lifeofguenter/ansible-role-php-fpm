@@ -11,7 +11,7 @@
   when: ansible_distribution == 'Ubuntu'
 
 - name: Fetch imagick .deb
-  get_url: url=https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}/php5-imagick_{{ php5fpm_ext_imagick_version }}_amd64.deb dest=/tmp/php5-imagick_{{ php5fpm_ext_imagick_version }}_amd64.deb
+  get_url: url=https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}/php5-imagick_{{ php5fpm_ext_imagick_version }}_amd64.deb dest=/tmp/php5-imagick_{{ php5fpm_ext_imagick_version }}_amd64.deb validate_certs=false
 
 - name: Install imagick .deb
   apt: deb=/tmp/php5-imagick_{{ php5fpm_ext_imagick_version }}_amd64.deb
