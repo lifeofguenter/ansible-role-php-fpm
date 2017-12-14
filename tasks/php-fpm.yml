@@ -1,35 +1,7 @@
 ---
 
-- name: Install dependencies
-  apt: name={{ item }} state=present update_cache=yes cache_valid_time=3600
-  with_items:
-    - libvpx1
-    - libltdl7
-    - libssl1.0.0
-    - libicu52
-    - libxml2
-    - libbz2-1.0
-    - libcurl3
-    - libpng12-0
-    - libfreetype6
-    - libmcrypt4
-    - libxslt1.1
-    - libc-client2007e
-    - krb5-multidev
-  become: yes
-
-- name: Include Debian specifics
-  include: packages-debian.yml
-  when: ansible_distribution == 'Debian'
-
-- name: Include Ubuntu specifics
-  include: packages-ubuntu.yml
-  when: ansible_distribution == 'Ubuntu'
-
-- name: Fetch .deb
-  get_url: url=https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}/php5-fpm_{{ php5fpm_version }}_amd64.deb dest=/tmp/php5-fpm_{{ php5fpm_version }}_amd64.deb validate_certs=false
-
-- name: Install .deb
-  apt: deb=/tmp/php5-fpm_{{ php5fpm_version }}_amd64.deb
+- name: install .deb
+  apt:
+    deb: https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}/php5-fpm_{{ php5fpm_version }}_amd64.deb
   become: yes
   notify: restart_php5_fpm

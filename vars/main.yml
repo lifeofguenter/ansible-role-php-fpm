@@ -1,0 +1,6 @@
+---
+
+# remove build from version var
+php5fpm_real_version: "{{ php5fpm_version | regex_replace('-\\d+$', '') }}"
+
+php5fpm_version_string_match: "PHP {{ php5fpm_real_version }} \\(fpm-fcgi\\)"

@@ -1,26 +1,27 @@
 ---
+
+- name: install dependencies
+  include_tasks: packages-{{ ansible_distribution | lower }}-{{ ansible_distribution_release }}.yml
+
 - name: Get php-fpm version
   command: /usr/sbin/php-fpm --version
   register: php5fpm_current
   ignore_errors: yes
 
-- set_fact: php5fpm_real_version="{{ php5fpm_version | regex_replace('-\\d+$', '') }}"
+- import_tasks: php-fpm.yml
+  when: php5fpm_current | failed or not php5fpm_current.stdout | search(php5fpm_version_string_match)
 
-- name: Install php-fpm
-  include: php-fpm.yml
-  when: php5fpm_current.rc != 0 or php5fpm_current.stdout.find("PHP {{ php5fpm_real_version }} (fpm-fcgi)") == -1
+- import_tasks: config.yml
 
-- include: config.yml
+- import_tasks: ext-apcu.yml
 
-- include: ext-apcu.yml
+- import_tasks: ext-imagick.yml
 
-- include: ext-imagick.yml
+- import_tasks: ext-igbinary.yml
 
-- include: ext-igbinary.yml
+- import_tasks: ext-memcached.yml
 
-- include: ext-memcached.yml
-
-- include: ext-redis.yml
+- import_tasks: ext-redis.yml
 
 - name: Check if munin-node is installed
   command: dpkg -L munin-node
@@ -28,5 +29,5 @@
   ignore_errors: yes
 
 - name: Configure munin plugin
-  include: munin-plugin.yml
+  import_tasks: munin-plugin.yml
   when: dpkg_munin_node_check.rc == 0
