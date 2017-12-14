@@ -1,19 +1,5 @@
 ---
 
-- name: Install libmemcached
-  apt: name=libmemcached11 state=present update_cache=yes cache_valid_time=3600
-  become: yes
-  when: ansible_distribution == 'Debian'
-
-- name: Install libmemcached
-  apt: name=libmemcached10 state=present update_cache=yes cache_valid_time=3600
-  become: yes
-  when: ansible_distribution == 'Ubuntu'
-
-- name: Install libmemcachedutil
-  apt: name=libmemcachedutil2 state=present update_cache=yes cache_valid_time=3600
-  become: yes
-
 - name: Fetch memcached .deb
   get_url: url=https://ftp.weheartwebsites.de/{{ ansible_distribution | lower }}/{{ ansible_distribution_release }}/php5-memcached_{{ php5fpm_ext_memcached_version }}_amd64.deb dest=/tmp/php5-memcached_{{ php5fpm_ext_memcached_version }}_amd64.deb validate_certs=false
 

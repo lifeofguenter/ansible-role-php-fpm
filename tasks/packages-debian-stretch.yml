@@ -25,6 +25,7 @@
     - libzip4
     - libmagickwand-6.q16-3
     - libmemcached11
+    - libmemcachedutil2
     - libc-client2007e
     - libkrb5-3
   become: yes
