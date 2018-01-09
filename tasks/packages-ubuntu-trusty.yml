@@ -21,7 +21,6 @@
     - libreadline6
     - libxslt1.1
     - libjpeg-turbo8
-    - libzip2
     - libmagickwand5
     - libmemcached10
     - libmemcachedutil2
